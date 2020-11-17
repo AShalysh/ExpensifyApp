@@ -134,6 +134,23 @@ const filtersReducer = ( state = filtersReducerDefaultState, action ) => {
     }
 };
 
+//Get visible expenses
+const getVisibleExpenses = (expenses, {text, sortBy, startDate, endDate}) => {
+    return expenses.filter((expense) => {
+        const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
+        const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate;
+        const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
+
+        return startDateMatch && endDateMatch && textMatch;
+    }).sort(( a, b ) => {
+        if (sortBy === 'date') {
+            return a.createdAt < b.createdAt ? 1 : -1;
+        } else if (sortBy === 'amount') {
+            return a.amount < b.amount ? 1 : -1;
+        } 
+    });
+};
+
 //Store creation
 const store = createStore(
     combineReducers({
@@ -144,24 +161,26 @@ const store = createStore(
 
 //changes notification
 store.subscribe(() => {
-    console.log(store.getState());
+    const state = store.getState();
+    const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+    console.log(visibleExpenses);
 });
 
-const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100 }));
-const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 300 }));
-store.dispatch(removeExpense({ id: expenseOne.expense.id }));
-store.dispatch(editExpense( expenseTwo.expense.id, { amount: 500} ));
+const expenseOne = store.dispatch(addExpense({ description: 'Rent', amount: 100, createdAt: -21000 }));
+const expenseTwo = store.dispatch(addExpense({ description: 'Coffee', amount: 300, createdAt: -1000 }));
+// store.dispatch(removeExpense({ id: expenseOne.expense.id }));
+// store.dispatch(editExpense( expenseTwo.expense.id, { amount: 500} ));
 
-store.dispatch(setTextFilter('rent'));
-store.dispatch(setTextFilter(''));
+//store.dispatch(setTextFilter('ee'));
+// store.dispatch(setTextFilter(''));
 
 store.dispatch(sortByAmount());
-store.dispatch(sortByDate());
+// store.dispatch(sortByDate());
 
-console.log('Start Date/End Date');
-store.dispatch(setStartDate(125));
-store.dispatch(setStartDate());
-store.dispatch(setEndDate(1250));
+// console.log('Start Date/End Date');
+//store.dispatch(setStartDate(125));
+// store.dispatch(setStartDate());
+// store.dispatch(setEndDate(1250));
 
 const demoState = {
     expenses: [{
@@ -185,8 +204,8 @@ const user = {
     age: 24
 };
 //if you put age before ...user, it will be not overwritten
-console.log({
-    ...user,
-    age: 27,
-    location: 'Montreal'
-});
+// console.log({
+//     ...user,
+//     age: 27,
+//     location: 'Montreal'
+// });
