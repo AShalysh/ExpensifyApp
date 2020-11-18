@@ -44,3 +44,14 @@
 // We need a plugin to use jbject spreading -> Babel object spread operator ->
 // yarn add babel-plugin-transform-object-rest-spread@6.23.0
 //to add to the file babelrc ->
+// "plugins": [
+//     "transform-class-properties",
+//     "transform-object-rest-spread"
+// ]
+
+//Connecting Redux and React to create a connected components, react components that connected to the Redux store.
+// Components will be able to fetch the date from Redux store and to render smth to the screen. If data changes, it auto rerenders.
+//Dispatch actions we can do directly from our components.
+
+// React-Redux Library will allow to connect our redux store to react components. To use Higher Order Components.
+// Higher Order Component (HOC) lets you: reuse code, render hijacking, prop manipulation, abstract state
