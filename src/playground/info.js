@@ -55,3 +55,7 @@
 
 // React-Redux Library will allow to connect our redux store to react components. To use Higher Order Components.
 // Higher Order Component (HOC) lets you: reuse code, render hijacking, prop manipulation, abstract state
+
+//How to get to the store data from our components -> we need react-redux library
+// yarn add react-redux@5.0.5
+//import { Provider } from 'react-redux'; Provider provides store to all our components in our app
