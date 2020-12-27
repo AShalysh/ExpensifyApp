@@ -1,10 +1,12 @@
 import React from 'react';
-//export a stateless functional component
+import { Link } from 'react-router-dom';
 
-const ExpenseListItem = ({ description, amount, createdAt }) => (
+const ExpenseListItem = ({ id, description, amount, createdAt }) => (
     <div>
-        <h1>{description}</h1>
-        <p>{amount} - {createdAt}</p>
+        <Link to={`/edit/${id}`}>
+            <h1>{description}</h1>
+        </Link>
+        <p>{amount} - {createdAt}</p>   
     </div>
 );
 
