@@ -64,3 +64,32 @@
 //yarn add moment@2.18.1 react-dates@12.7.0 react-addons-shallow-compare@15.6.0
 
 //redux developer tools extension
+
+//Testing Jest
+//yarn add jest@20.0.4
+// in package.json add "test" =>
+// "scripts": {
+//     "serve": "live-server public/",
+//     "build": "webpack",
+//     "dev-server": "webpack-dev-server",
+//     "test": "jest"
+//   },
+//to run test -> in command line -> yarn 
+// test example:
+// const add = (a, b) => a + b;
+// const generateGreeting = (name = 'Anonymous') => `Hello ${name}!`;
+
+// test('should add two numbers', () => {
+//     const result = add(3, 4);
+//     expect(result).toBe(7);
+// });
+
+// test('should add name to greetings', () => {
+//     const result = generateGreeting('Mike');
+//     expect(result).toBe('Hello Mike!');
+// });
+
+// test('should generate greeting with no name', () => {
+//     const result = generateGreeting();
+//     expect(result).toBe('Hello Anonymous!');
+// });
